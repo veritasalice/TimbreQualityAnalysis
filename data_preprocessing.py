@@ -102,7 +102,6 @@ if __name__ == "__main__":
     from multiprocessing import Pool
     import argparse
     from pathlib import Path
-    import matplotlib.pyplot as plt
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--wav_path", default="../clarinetData/audio/")
@@ -128,26 +127,3 @@ if __name__ == "__main__":
     for i, _ in tqdm(enumerate(p.imap(save_features, files)), total=len(files)):
         if i % 500 == 0:
             print(i)
-
-# Show an example
-    name = '1101_P1_oE0_1'
-    sample = np.load('../clarinetData/feature/{}.npy'.format(name))
-    sample_pu = np.load('../clarinetData/feature/{}_pu.npy'.format(name))
-    sample_pd = np.load('../clarinetData/feature/{}_pd.npy'.format(name))
-    sample_lu = np.load('../clarinetData/feature/{}_lu.npy'.format(name))
-    sample_ld = np.load('../clarinetData/feature/{}_ld.npy'.format(name))
-
-    plt.figure()
-    plt.imshow(sample)
-    plt.show()
-
-    plt.figure()
-    plt.subplot(221)
-    plt.imshow(sample_pu)
-    plt.subplot(222)
-    plt.imshow(sample_pd)
-    plt.subplot(223)
-    plt.imshow(sample_lu)
-    plt.subplot(224)
-    plt.imshow(sample_ld)
-    plt.show()
